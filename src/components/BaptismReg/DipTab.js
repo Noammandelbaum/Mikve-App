@@ -10,7 +10,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import ButtonGroup from "@mui/material/ButtonGroup";
 
-export default function DipTab({ tovlCategoryName, tvilaCost, noteCategory }) {
+export default function DipTab({ tovlCategoryName, noteCategory,costPerTovel }) {
   const [counter, setCounter] = useState(0);
   return (
     <>
@@ -19,7 +19,7 @@ export default function DipTab({ tovlCategoryName, tvilaCost, noteCategory }) {
           <Grid container alignItems="center">
             <Grid item xs>
               <Typography gutterBottom variant="h6" component="div">
-                {counter > 0 && `₪${counter * tvilaCost}`}
+                {/* {counter > 0 && `₪${counter * tvilaCost}`} */}
                 {/* ₪{counter*10} */}
               </Typography>
             </Grid>
@@ -31,7 +31,7 @@ export default function DipTab({ tovlCategoryName, tvilaCost, noteCategory }) {
           </Grid>
           <Grid item>
             <Typography color="text.secondary" variant="body2" align="right">
-              {noteCategory}
+              {`₪${costPerTovel}`}
             </Typography>
           </Grid>
         </Box>

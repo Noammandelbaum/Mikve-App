@@ -1,5 +1,5 @@
 import "./App.css";
-import TvilaReg from "./components/TvilaReg/TvilaReg";
+import TvilaReg from "./components/BaptismReg/TvilaReg";
 
 function App() {
   return <TvilaReg />;
