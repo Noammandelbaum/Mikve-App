@@ -1,0 +1,51 @@
+[
+    {
+        "idFam": 1,
+        "famName": "מנדלבאום משה",
+        "users": {
+            "user": {
+                "idUser": 1,
+                "name": null,
+                "email": null,
+                "passwoard": null,
+                "tvilotData": {
+                    "tvila": {
+                        "date": null,
+                        "adult": null,
+                        "child": null
+                    }
+                }
+            }
+        }
+    },
+    {
+        "id": 2,
+        "famName": "כהן חיים",
+        "users": {},
+        "tvilotData": {
+            "tvilotChild": 0,
+            "tvilotAdult": 0,
+            "tvilotDates": {}
+        }
+    },
+    {
+        "id": 3,
+        "famName": "ששון אבי",
+        "users": {},
+        "tvilotData": {
+            "tvilotChild": 0,
+            "tvilotAdult": 0,
+            "tvilotDates": {}
+        }
+    },
+    {
+        "id": 4,
+        "famName": "פלס אריה",
+        "users": {},
+        "tvilotData": {
+            "tvilotChild": 0,
+            "tvilotAdult": 0,
+            "tvilotDates": {}
+        }
+    }
+]
