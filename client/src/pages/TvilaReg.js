@@ -1,32 +1,20 @@
 import ChildRegButton from "../components/TvilaReg/ChildReg";
 import AdultRegButton from "../components/TvilaReg/AdultReg";
 import ConfirmLine from "../components/TvilaReg/ConfirmLine";
+import AllInclusiveIcon from "@mui/icons-material/AllInclusive";
 import Divider from "@mui/material/Divider";
 import { Avatar, Box, Container, CssBaseline, Typography } from "@mui/material";
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-// function Copyright(props) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="right" {...props}>
-//       {"© נעם מנדלבאום"}
-//       {"."}
-//     </Typography>
-//   );
-// }
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function TvilaReg() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  let navigate = useNavigate();
+  const handleSubmit = () => {
+    navigate("/api/summary", { replace: true });
   };
   return (
     <>
@@ -43,7 +31,7 @@ export default function TvilaReg() {
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
+              <AllInclusiveIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
               טבילה
@@ -56,15 +44,6 @@ export default function TvilaReg() {
             >
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  {/* <TextField
-                    autoComplete="given-name"
-                    name="firstName"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label="שם"
-                    autoFocus
-                  /> */}
                   <AdultRegButton />
                 </Grid>
                 <Grid item xs={12}>
@@ -78,7 +57,6 @@ export default function TvilaReg() {
               </Grid>
             </Box>
           </Box>
-          {/* <Copyright sx={{ mt: 5 }} /> */}
         </Container>
       </ThemeProvider>
     </>

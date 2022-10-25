@@ -1,6 +1,5 @@
 import "./App.css";
 import TvilaReg from "./pages/TvilaReg";
-import Users from "./pages/Users";
 import NoPage from "./pages/NoPage";
 import SignUp from "./components/LogInOut/SignUp";
 import SignIn from "./components/LogInOut/SignIn";import DrawerAppBar from "./components/DrawerAppBar";
@@ -11,6 +10,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import Summary from "./pages/Summary";
 // import { GoogleLogin, GoogleLogout } from "react-google-login";
 // import { gapi } from "gapi-script";
 // import Logother from "./components/LogInOut/Logother";
@@ -32,10 +32,11 @@ export default function App() {
       <Router>
         <DrawerAppBar />
         <Routes>
-          <Route path="/" element={<TvilaReg />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/api" element={<SignIn />} />
+          <Route path="/api/tvila-reg" element={<TvilaReg />} />
+          <Route path="/api/sign-up" element={<SignUp />} />
+          <Route path="/api/sign-in" element={<SignIn />} />
+          <Route path="/api/summary" element={<Summary />} />
           {/* <Route path="*" element={<NoPage />} /> */}
         </Routes>
       </Router>

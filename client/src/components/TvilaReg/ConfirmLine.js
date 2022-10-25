@@ -16,7 +16,6 @@ export default function ConfirmLine() {
           variant="body2"
           sx={{ my: 1.5, mx: 2 }}
         >
-          {/* {`סך הכל : ${countChild} ילד, ${countAdult} מבוגר.`} */}
           {!countChild && !countAdult ? `יש ללחוץ על ה '+'` : `סך הכל : `}
           {countChild ? `${countChild} ילד` : ``}
           {countChild && countAdult ? `   |   ` : ``}

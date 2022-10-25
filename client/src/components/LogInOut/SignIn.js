@@ -88,10 +88,10 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+              label="זכור אותי"
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -101,14 +101,14 @@ export default function SignIn() {
               כניסה
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
-                <RouterLink to="/sign-up" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <RouterLink to="/api/sign-up" variant="body2">
+                  {"עדין אין לך חשבון? הרשם"}
                 </RouterLink>
               </Grid>
             </Grid>

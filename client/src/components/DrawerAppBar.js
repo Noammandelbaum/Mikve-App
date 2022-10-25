@@ -16,11 +16,9 @@ import { Link as RouterLink } from "react-router-dom";
 
 const drawerWidth = 240;
 const navItems = [
-  { item: "בית", link: "/" },
-  // { item: "משתמשים", link: "/users" },
-  // { item: "Login", link: "/login" },
-  { item: "כניסה", link: "/sign-in" },
-  { item: "הרשמה", link: "/sign-up" },
+  { item: "טבילה", link: "/api/tvila-reg" },
+  { item: "כניסה", link: "/api/sign-in" },
+  { item: "הרשמה", link: "/api/sign-up" },
 ];
 
 function DrawerAppBar(props) {
@@ -115,13 +113,5 @@ function DrawerAppBar(props) {
     </>
   );
 }
-
-// DrawerAppBar.propTypes = {
-//   /**
-//    * Injected by the documentation to work in an iframe.
-//    * You won't need it on your project.
-//    */
-//   window: PropTypes.func,
-// };
 
 export default DrawerAppBar;
