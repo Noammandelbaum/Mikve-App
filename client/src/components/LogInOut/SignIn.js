@@ -14,24 +14,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link as RouterLink } from "react-router-dom";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const theme = createTheme();
 
 export default function SignIn() {
@@ -65,7 +47,6 @@ export default function SignIn() {
           <Box
             component="form"
             onSubmit={handleSubmit}
-            noValidate
             sx={{ mt: 1 }}
           >
             <TextField
@@ -73,7 +54,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="אימייל"
               name="email"
               autoComplete="email"
               autoFocus
@@ -83,16 +64,14 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="סיסמה"
               type="password"
               id="password"
               autoComplete="current-password"
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="זכור אותי"
-            /> */}
+
             <Button
+           
               type="submit"
               fullWidth
               variant="contained"
@@ -101,11 +80,6 @@ export default function SignIn() {
               כניסה
             </Button>
             <Grid container>
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  
-                </Link>
-              </Grid> */}
               <Grid item>
                 <RouterLink to="/api/sign-up" variant="body2">
                   {"עדין אין לך חשבון? הרשם"}
@@ -114,7 +88,6 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

@@ -1,5 +1,6 @@
 import "./App.css";
 import TvilaReg from "./pages/TvilaReg";
+import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import SignUp from "./components/LogInOut/SignUp";
 import SignIn from "./components/LogInOut/SignIn";import DrawerAppBar from "./components/DrawerAppBar";
@@ -32,7 +33,7 @@ export default function App() {
       <Router>
         <DrawerAppBar />
         <Routes>
-          <Route path="/api" element={<SignIn />} />
+          <Route path="/api" element={<Home/>} />
           <Route path="/api/tvila-reg" element={<TvilaReg />} />
           <Route path="/api/sign-up" element={<SignUp />} />
           <Route path="/api/sign-in" element={<SignIn />} />

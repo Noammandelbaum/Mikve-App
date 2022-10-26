@@ -16,9 +16,10 @@ import { Link as RouterLink } from "react-router-dom";
 
 const drawerWidth = 240;
 const navItems = [
-  { item: "טבילה", link: "/api/tvila-reg" },
-  { item: "כניסה", link: "/api/sign-in" },
+  { item: "בית", link: "/api" },
   { item: "הרשמה", link: "/api/sign-up" },
+  { item: "כניסה", link: "/api/sign-in" },
+  { item: "טבילה", link: "/api/tvila-reg" },
 ];
 
 function DrawerAppBar(props) {
@@ -37,13 +38,15 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         {navItems.map(({ item, link }) => (
-          <RouterLink to={link} key={item}>
-            <ListItem disablePadding >
-              <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItem disablePadding key={item}>
+              <ListItemButton
+                sx={{ textAlign: "center" }}
+                component={RouterLink}
+                to={link}
+              >
                 <ListItemText primary={item} />
               </ListItemButton>
             </ListItem>
-          </RouterLink>
         ))}
       </List>
     </Box>
@@ -69,11 +72,14 @@ function DrawerAppBar(props) {
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
               {navItems.map(({ item, link }) => (
-                <RouterLink to={link} key={item}>
-                  <Button key={item} sx={{ color: "#fff" }}>
+                  <Button
+                    key={item}
+                    sx={{ color: "#fff" }}
+                    component={RouterLink}
+                    to={link}
+                  >
                     {item}
                   </Button>
-                </RouterLink>
               ))}
             </Box>
             <Typography
