@@ -2,43 +2,61 @@ import "./App.css";
 import TvilaReg from "./pages/TvilaReg";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
-import SignUp from "./components/LogInOut/SignUp";
-import SignIn from "./components/LogInOut/SignIn";import DrawerAppBar from "./components/DrawerAppBar";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
+import DrawerAppBar from "./components/DrawerAppBar";
 import MyContext from "./components/MyContext";
 import { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Summary from "./pages/Summary";
-// import { GoogleLogin, GoogleLogout } from "react-google-login";
-// import { gapi } from "gapi-script";
-// import Logother from "./components/LogInOut/Logother";
-// import Login from "./components/LogInOut/Login";
-// import LoginR from "./components/LogInOut/LogInR";
-// import LogoutR from "./components/LogInOut/LogoutR";
 
 export default function App() {
   const [countChild, setCountChild] = useState(0);
   const [countAdult, setCountAdult] = useState(0);
+  const [user, setUser] = useState();
+  const [openOnload, setOpenOnload] = useState(false);
+  const [onAlert, setOnAlert] = useState(false);
+  const [alertType, setAlerType] = useState("");
+  const [alertMsg, setAlertMsg] = useState("");
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser !== "undefined") {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
 
   return (
     <MyContext.Provider
       value={{
         adult: [countAdult, setCountAdult],
         child: [countChild, setCountChild],
+        userC: [user, setUser],
+        onLoad: [openOnload, setOpenOnload],
+        alertMUI: [
+          onAlert,
+          setOnAlert,
+          alertType,
+          setAlerType,
+          alertMsg,
+          setAlertMsg,
+        ],
       }}
     >
       <Router>
         <DrawerAppBar />
         <Routes>
-          <Route path="/api" element={<Home/>} />
-          <Route path="/api/tvila-reg" element={<TvilaReg />} />
+          <Route path="/api" element={<Home />} />
           <Route path="/api/sign-up" element={<SignUp />} />
           <Route path="/api/sign-in" element={<SignIn />} />
-          <Route path="/api/summary" element={<Summary />} />
-          {/* <Route path="*" element={<NoPage />} /> */}
+          {user && (
+            <>
+              <Route path="/api/tvila-reg" element={<TvilaReg />} />
+              <Route path="/api/summary" element={<Summary />} />
+            </>
+          )}
+          <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>
     </MyContext.Provider>

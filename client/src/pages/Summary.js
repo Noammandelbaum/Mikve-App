@@ -13,6 +13,7 @@ export default function Summary() {
   const { adult, child } = useContext(MyContext);
   const [countAdult, setCountAdult] = adult;
   const [countChild, setCountChild] = child;
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -27,7 +28,7 @@ export default function Summary() {
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <CheckIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" >
+        <Typography component="h1" variant="h5">
           {`טבילתך נרשמה בהצלחה!`}
         </Typography>
         <Typography component="h1" variant="h5">

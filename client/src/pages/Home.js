@@ -32,7 +32,10 @@ export default function Home() {
           <Grid container alignItems="center">
             <Grid item>
               <Typography gutterBottom variant="h6" component="div">
-                {`הטבילה נרשמת באתר והתשלום מתבצע במיסי היישוב`}
+                {`רישום הטבילה מתבצע כאן, באתר.`}
+              </Typography>
+              <Typography gutterBottom variant="h6" component="div">
+                {`התשלום יגבה בסוף החודש, יחד עם מיסי היישוב.`}
               </Typography>
             </Grid>
           </Grid>

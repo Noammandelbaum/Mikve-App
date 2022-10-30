@@ -1,20 +1,20 @@
 const express = require("express");
 const app = express();
 app.use(express.json());
-app.use(express.static('client/build'));
+app.use(express.static("client/build"));
 const mongoose = require("mongoose");
 require("dotenv").config();
 
 const tvilaSchema = new mongoose.Schema({
-  adult: Number,
-  child: Number,
+  countAdult: Number,
+  countChild: Number,
 });
 const Tvila = mongoose.model("Tvila", tvilaSchema);
 
 const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
-  passwoard: String,
+  password: String,
   tvilot: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tvila" }],
 });
 const User = mongoose.model("User", UserSchema);
@@ -24,16 +24,6 @@ const FamSchema = new mongoose.Schema({
   users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 const Fam = mongoose.model("Fam", FamSchema);
-
-// function findFam() {
-//   Fam.find({ name: "Punit" }, { age: 0 }, function (err, docs) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       console.log("Second function call : ", docs);
-//     }
-//   });
-// }
 
 app.post("/api/admin/add-fam", async (req, res) => {
   const { famName } = req.body;
@@ -46,27 +36,65 @@ app.post("/api/admin/add-fam", async (req, res) => {
 });
 
 app.post("/api/sign-up", async (req, res) => {
-  const { famName, name, email, passwoard } = req.body;
+  const { famName, name, email, password } = req.body;
+  let userErr = await User.findOne({
+    email,
+  }).exec();
+  if (userErr) {
+    res.status(400).send(`מייל בשמוש בחשבון אחר, נסה מייל אחר.`);
+    return;
+  }
+
   let fam = await Fam.findOne({
     famName,
   }).exec();
-  !fam && res.send("Can't find this fam");
-  const user = new User({ name, email, passwoard });
+  if (!fam) {
+    res
+      .status(400)
+      .send(
+        `.המשפחה אינה מעודכנת במערכת, שלם במזומן במקווה או פנה למנהל המקווה`
+      );
+    return;
+  }
+
+  for (let i = 0; i < fam.users.length; i++) {
+    const currUser = await User.findById(fam.users[i]);
+    if (currUser.name === name) {
+      res.status(400).send(`.השם כבר רשום במערכת, נסה שם אחר`);
+      return;
+    }
+  }
+
+  const user = new User({ name, email, password });
   user.save((err) => {
-    console.log(user);
     err && console.log(err);
   });
   fam.users.push(user);
   fam.save((err) => {
     err && console.log(err);
-    res.send(user);
+    res.status(200).send(user);
   });
 });
 
+app.post("/api/sign-in", async (req, res) => {
+  const { email, password } = req.body;
+  let user = await User.findOne({
+    email,
+  }).exec();
+  console.log("user", user);
+  if (!user || user.password !== password) {
+    res.status(400).send(`פרטי הכניסה אינם נכונים, נסה שנית.`);
+    return;
+  } else res.status(200).send(user);
+});
+
 app.post("/api/tvila-reg", async (req, res) => {
-  const { idUser, adult, child } = req.body;
+  const { idUser, countAdult, countChild } = req.body;
+  // console.log("idUser", idUser);
+  // console.log("countAdult", countAdult);
+  // console.log("countChild", countChild);
   let user = await User.findById(idUser);
-  const tvila = new Tvila({ adult, child });
+  const tvila = new Tvila({ countAdult, countChild });
   tvila.save((err) => {
     err && console.log(err);
   });
@@ -101,10 +129,4 @@ mongoose.connect(
 //   Fam.find((err, tvilot) => {
 //     return res.send(tvilot);
 //   });
-// });
-
-//קריאות שרת:
-//פרטי משתמש להצגה - get
-//רישום משפחה - post
-//רישום טבילה - post
-//רישום טבילה - post
+// })

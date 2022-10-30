@@ -7,15 +7,11 @@ import { Avatar, Box, Container, CssBaseline, Typography } from "@mui/material";
 import * as React from "react";
 import Grid from "@mui/material/Grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export default function TvilaReg() {
-  let navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/api/summary", { replace: true });
-  };
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -37,9 +33,7 @@ export default function TvilaReg() {
               טבילה
             </Typography>
             <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
+              // onSubmit={handleSubmit}
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
