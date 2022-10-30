@@ -15,9 +15,6 @@ export default function App() {
   const [countAdult, setCountAdult] = useState(0);
   const [user, setUser] = useState();
   const [openOnload, setOpenOnload] = useState(false);
-  const [onAlert, setOnAlert] = useState(false);
-  const [alertType, setAlerType] = useState("");
-  const [alertMsg, setAlertMsg] = useState("");
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -34,14 +31,6 @@ export default function App() {
         child: [countChild, setCountChild],
         userC: [user, setUser],
         onLoad: [openOnload, setOpenOnload],
-        alertMUI: [
-          onAlert,
-          setOnAlert,
-          alertType,
-          setAlerType,
-          alertMsg,
-          setAlertMsg,
-        ],
       }}
     >
       <Router>
