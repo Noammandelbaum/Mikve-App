@@ -112,8 +112,6 @@ app.get("*", (req, res) => {
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 mongoose.connect(
   `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_NAME}.${DB_HOST}/?retryWrites=true&w=majority`,
-  // `mongodb+srv://noam:rsnKdtn6GrlX6VWa@mikveapp.xrt1qnc.mongodb.net/?retryWrites=true&w=majority`,
-  // "mongodb://localhost:27017/mikve_app",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
